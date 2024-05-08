@@ -36,12 +36,31 @@ namespace HoursNameSpace
             var response = await new HttpClient().GetStringAsync(uri);
             var json = JObject.Parse(response);
 
+            if (json == null)
+            {
+                Console.WriteLine("No data found");
+                return;
+            }
+
+            var rangeDetails = json["rangeDetails"];
+
+            if (rangeDetails == null)
+            {
+                Console.WriteLine("No data found");
+                return;
+            }
+
             // Display the rangeDetails array in a table format with separate columns for start and end times
             Console.WriteLine("{0,-10} {1,-10} {2,-10} {3,-10}", "start", "end", "duration", "durationInHours");
             Console.WriteLine(new string('-', 40));
-            foreach (var rangeDetail in json["rangeDetails"])
+
+
+            foreach (var rangeDetail in rangeDetails)
             {
-                Console.WriteLine("{0,-10} {1,-10} {2,-10} {3,-10}", rangeDetail["range"]["start"], rangeDetail["range"]["end"], rangeDetail["duration"], rangeDetail["durationInHours"]);
+                if (rangeDetail != null)
+                {
+                    Console.WriteLine("{0,-10} {1,-10} {2,-10} {3,-10}", rangeDetail["range"]["start"], rangeDetail["range"]["end"], rangeDetail["duration"], rangeDetail["durationInHours"]);
+                }
             }
             Console.WriteLine();
 
