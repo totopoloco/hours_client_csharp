@@ -25,9 +25,9 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Publish
-      run: dotnet publish --configuration Release --no-build --output ./publish
+      run: dotnet publish --configuration Release --no-build
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: Executabke
+        name: Executable
         path: ./publish/*.exe
