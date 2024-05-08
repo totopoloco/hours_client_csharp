@@ -9,22 +9,17 @@ namespace HoursNameSpace
     {
         static async Task Main(string[] args)
         {
-            //Create a new instance of the Hours class
-            int start = 0;
-            int lunchStart = 0;
-            int minutesOfLunchBreak = 30;
-
             string uri = "http://localhost:8384/ranges";
             if (args.Length >= 3)
             {
-                start = int.Parse(args[0]);
-                lunchStart = int.Parse(args[1]);
-                minutesOfLunchBreak = int.Parse(args[2]);
+                int start = int.Parse(args[0]);
+                int lunchStart = int.Parse(args[1]);
+                int minutesOfLunchBreak = int.Parse(args[2]);
                 uri += $"WithStartLunchAndMinutesOfLunchBreak/{start}/{lunchStart}/{minutesOfLunchBreak}";
             }
             else if (args.Length >= 1)
             {
-                minutesOfLunchBreak = int.Parse(args[0]);
+                int minutesOfLunchBreak = int.Parse(args[0]);
                 uri += $"/{minutesOfLunchBreak}";
             }
             else
@@ -50,16 +45,15 @@ namespace HoursNameSpace
                 return;
             }
 
-            // Display the rangeDetails array in a table format with separate columns for start and end times
             Console.WriteLine("{0,-10} {1,-10} {2,-10} {3,-10}", "start", "end", "duration", "durationInHours");
             Console.WriteLine(new string('-', 40));
 
 
             foreach (var rangeDetail in rangeDetails)
             {
-                if (rangeDetail != null && rangeDetail["range"] != null && rangeDetail["range"]["start"] != null && rangeDetail["range"]["end"] != null && rangeDetail["duration"] != null && rangeDetail["durationInHours"] != null)
+                if (rangeDetail != null && rangeDetail["range"] != null)
                 {
-                    Console.WriteLine("{0,-10} {1,-10} {2,-10} {3,-10}", rangeDetail["range"]["start"], rangeDetail["range"]["end"], rangeDetail["duration"], rangeDetail["durationInHours"]);
+                    Console.WriteLine("{0,-10} {1,-10} {2,-10} {3,-10}", rangeDetail["range"]?["start"], rangeDetail["range"]?["end"], rangeDetail["duration"], rangeDetail["durationInHours"]);
                 }
             }
             Console.WriteLine();
