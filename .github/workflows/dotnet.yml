@@ -23,7 +23,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build and Publish for Windows
-      run: dotnet publish --configuration Release --runtime win-x64 --self-contained false
+      run: dotnet publish --configuration Release --runtime win-x64 --self-contained true
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
