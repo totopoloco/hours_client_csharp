@@ -18,7 +18,7 @@ namespace HoursNameSpace
 
             IConfigurationRoot configuration = builder.Build();
 
-            string uri = configuration.GetSection("AppSettings:Uri").Value;
+            string uri = configuration.GetSection("AppSettings:Uri").Value ?? "http://localhost:8384/ranges";
 
             if (args.Length >= 3)
             {
