@@ -57,7 +57,7 @@ namespace HoursNameSpace
 
             foreach (var rangeDetail in rangeDetails)
             {
-                if (rangeDetail != null && rangeDetail["range"] != null)
+                if (rangeDetail != null && rangeDetail["range"] != null && rangeDetail["range"]["start"] != null && rangeDetail["range"]["end"] != null && rangeDetail["duration"] != null && rangeDetail["durationInHours"] != null)
                 {
                     Console.WriteLine("{0,-10} {1,-10} {2,-10} {3,-10}", rangeDetail["range"]["start"], rangeDetail["range"]["end"], rangeDetail["duration"], rangeDetail["durationInHours"]);
                 }
