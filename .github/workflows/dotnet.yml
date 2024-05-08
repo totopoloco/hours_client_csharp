@@ -22,10 +22,8 @@ jobs:
         dotnet-version: 8.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
-    - name: Publish
-      run: dotnet publish --configuration Release --no-build -o ./publish
+    - name: Build and Publish for Windows
+      run: dotnet publish --configuration Release --runtime win-64 --self-contained false
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
