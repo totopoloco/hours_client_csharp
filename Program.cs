@@ -57,7 +57,7 @@ namespace HoursNameSpace
 
             foreach (var rangeDetail in rangeDetails)
             {
-                if (rangeDetail != null)
+                if (rangeDetail != null && rangeDetail["range"] != null)
                 {
                     Console.WriteLine("{0,-10} {1,-10} {2,-10} {3,-10}", rangeDetail["range"]["start"], rangeDetail["range"]["end"], rangeDetail["duration"], rangeDetail["durationInHours"]);
                 }
@@ -68,8 +68,8 @@ namespace HoursNameSpace
             Console.WriteLine("{0,-20} {1,-20} {2,-20}", "totalHours", "totalHoursInHHMM", "expectedLunchTimeInHHMM");
             Console.WriteLine(new string('-', 60));
             Console.WriteLine("{0,-20} {1,-20} {2,-20}", json["totalHours"], json["totalHoursInHHMM"], json["expectedLunchTimeInHHMM"]);
-        
+
         }
-    
+
     }
 }
