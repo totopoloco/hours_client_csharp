@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "HoursClient": {
+      "commandName": "Project",
+      "commandLineArgs": "10 13 30"
+    }
+  }
+}
