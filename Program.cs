@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.IO;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 
 namespace HoursNameSpace
@@ -9,7 +11,15 @@ namespace HoursNameSpace
     {
         static async Task Main(string[] args)
         {
-            string uri = "http://localhost:8384/ranges";
+            
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            IConfigurationRoot configuration = builder.Build();
+
+            string uri = configuration.GetSection("AppSettings:Uri").Value;
+
             if (args.Length >= 3)
             {
                 int start = int.Parse(args[0]);
