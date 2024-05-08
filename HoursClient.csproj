@@ -8,6 +8,7 @@
 		<PublishAot>false</PublishAot>
 		<InvariantGlobalization>true</InvariantGlobalization>
         <RuntimeIdentifiers>win-x64;osx-x64;linux-x64</RuntimeIdentifiers>
+		<PublishSingleFile>true</PublishSingleFile>
 	</PropertyGroup>
 
 	<ItemGroup>
