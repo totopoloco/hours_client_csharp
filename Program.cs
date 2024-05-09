@@ -5,7 +5,7 @@ using System.IO;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 
-namespace HoursNameSpace
+namespace HoursNamespace
 {
     class Program
     {
@@ -20,14 +20,14 @@ namespace HoursNameSpace
 
             string uri = configuration.GetSection("AppSettings:Uri").Value ?? "http://localhost:8384/ranges";
 
-            if (args.Length >= 3)
+            if (args.Length == 3)
             {
                 int start = int.Parse(args[0]);
                 int lunchStart = int.Parse(args[1]);
                 int minutesOfLunchBreak = int.Parse(args[2]);
                 uri += $"WithStartLunchAndMinutesOfLunchBreak/{start}/{lunchStart}/{minutesOfLunchBreak}";
             }
-            else if (args.Length >= 1)
+            else if (args.Length == 1)
             {
                 int minutesOfLunchBreak = int.Parse(args[0]);
                 uri += $"/{minutesOfLunchBreak}";
