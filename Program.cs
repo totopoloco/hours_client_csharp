@@ -25,7 +25,7 @@ namespace HoursNamespace
                 int start = int.Parse(args[0]);
                 int lunchStart = int.Parse(args[1]);
                 int minutesOfLunchBreak = int.Parse(args[2]);
-                uri += $"WithStartLunchAndMinutesOfLunchBreak/{start}/{lunchStart}/{minutesOfLunchBreak}";
+                uri += $"With/{start}/{lunchStart}/{minutesOfLunchBreak}";
             }
             else if (args.Length == 1)
             {
@@ -63,7 +63,10 @@ namespace HoursNamespace
             {
                 if (rangeDetail != null && rangeDetail["range"] != null)
                 {
-                    Console.WriteLine("{0,-10} {1,-10} {2,-10} {3,-10}", rangeDetail["range"]?["start"], rangeDetail["range"]?["end"], rangeDetail["duration"], rangeDetail["durationInHours"]);
+                    var startTime = DateTime.Parse(rangeDetail["range"]["start"].ToString()).TimeOfDay;
+                    var endTime = DateTime.Parse(rangeDetail["range"]["end"].ToString()).TimeOfDay;
+                    var durationInHours = double.Parse(rangeDetail["durationInHours"].ToString()).ToString("0.00");
+                    Console.WriteLine("{0,-10} {1,-10} {2,-10} {3,-10}", startTime, endTime, rangeDetail["duration"], durationInHours);
                 }
             }
             Console.WriteLine();
@@ -71,8 +74,8 @@ namespace HoursNamespace
             // Display the remaining data
             Console.WriteLine("{0,-20} {1,-20} {2,-20}", "totalHours", "totalHoursInHHMM", "expectedLunchTimeInHHMM");
             Console.WriteLine(new string('-', 60));
-            Console.WriteLine("{0,-20} {1,-20} {2,-20}", json["totalHours"], json["totalHoursInHHMM"], json["expectedLunchTimeInHHMM"]);
-
+            var totalHours = double.Parse(json["totalHours"].ToString()).ToString("0.00");
+            Console.WriteLine("{0,-20} {1,-20} {2,-20}", totalHours, json["totalHoursInHHMM"], json["expectedLunchTimeInHHMM"]);
         }
 
     }
