@@ -41,7 +41,7 @@ namespace HoursNamespace
             var response = await new HttpClient().GetStringAsync(uri);
             var json = JObject.Parse(response);
 
-            if (json == null)
+            if (json is null)
             {
                 Console.WriteLine("No data found");
                 return;
@@ -49,7 +49,7 @@ namespace HoursNamespace
 
             var rangeDetails = json["rangeDetails"];
 
-            if (rangeDetails == null)
+            if (rangeDetails is null)
             {
                 Console.WriteLine("No data found");
                 return;
@@ -61,7 +61,7 @@ namespace HoursNamespace
 
             foreach (var rangeDetail in rangeDetails)
             {
-                if (rangeDetail != null && rangeDetail["range"] != null)
+                if (rangeDetail is not null && rangeDetail["range"] is not null)
                 {
                     var startTime = DateTime.Parse(rangeDetail["range"]["start"].ToString()).TimeOfDay;
                     var endTime = DateTime.Parse(rangeDetail["range"]["end"].ToString()).TimeOfDay;
